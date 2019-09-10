@@ -1,5 +1,6 @@
 package ru.dexsys;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,9 +16,9 @@ public class YandexMarketSaveButtonTest extends WebDriverSettings {
         searchField.sendKeys("intel xeon e3-1220 e3 1220");
         searchButton.click();
 
-        WebElement product = driver.findElement(new By.ByXPath("//*[@id=\"product-1729869620\"]/div[4]/div[1]/div[1]/a"));
-
-        product.click();
+        driver.findElement(new By.ByCssSelector("[data-id =\"model-1729869620\"]"));
+        WebElement productRef = driver.findElement(By.xpath("//*[@id=\"product-1729869620\"]/div[4]/div[1]/div[1]/a"));
+        productRef.click();
 
         WebElement saveButton = driver.findElement(new By.ByXPath("/html/body/div[1]/div[5]/div[2]/div/div/div/div[2]/div/a/span[1]"));
         saveButton.click();
@@ -25,6 +26,7 @@ public class YandexMarketSaveButtonTest extends WebDriverSettings {
         WebElement moveToSavedButton = driver.findElement(new By.ByCssSelector("body > div.popup-informer.i-bem.popup-informer_js_inited > div > div > div.popup-informer__controls > a"));
         moveToSavedButton.click();
 
+        if (driver.findElement(By.cssSelector("[data-id =\"model-1729869620\"]")).getSize() != null)
+            System.out.println("Success, item was added to saved");
     }
-
 }
