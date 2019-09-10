@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class YandexMarketSaveButtonTest extends WebDriverSettings {
+public class YandexMarketWishlistButtonTest extends WebDriverSettings {
     @Test
     public void checkSaveButtonAddsItem() throws InterruptedException {
         driver.get("https://market.yandex.ru");
@@ -20,13 +20,22 @@ public class YandexMarketSaveButtonTest extends WebDriverSettings {
         WebElement productRef = driver.findElement(By.xpath("//*[@id=\"product-1729869620\"]/div[4]/div[1]/div[1]/a"));
         productRef.click();
 
-        WebElement saveButton = driver.findElement(new By.ByXPath("/html/body/div[1]/div[5]/div[2]/div/div/div/div[2]/div/a/span[1]"));
-        saveButton.click();
+        WebElement wishlistButton = driver.findElement(new By.ByXPath("/html/body/div[1]/div[5]/div[2]/div/div/div/div[2]/div/a/span[1]"));
+        wishlistButton.click();
 
-        WebElement moveToSavedButton = driver.findElement(new By.ByCssSelector("body > div.popup-informer.i-bem.popup-informer_js_inited > div > div > div.popup-informer__controls > a"));
-        moveToSavedButton.click();
+        WebElement moveToWishlist = driver.findElement(new By.ByCssSelector("body > div.popup-informer.i-bem.popup-informer_js_inited > div > div > div.popup-informer__controls > a"));
+        moveToWishlist.click();
 
         if (driver.findElement(By.cssSelector("[data-id =\"model-1729869620\"]")).getSize() != null)
             System.out.println("Success, item was added to saved");
     }
+
+    @Test
+    public void isClickable(){
+        driver.get("https://market.yandex.ru");
+        WebElement wishlistButton = driver.findElement(By.cssSelector("[data-title = \"Отложенные\""));
+        wishlistButton.click();
+    }
+
+
 }
