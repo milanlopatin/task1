@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class YandexMarketWishlistButtonTest extends WebDriverSettings {
     @Test
@@ -37,5 +38,16 @@ public class YandexMarketWishlistButtonTest extends WebDriverSettings {
         wishlistButton.click();
     }
 
+    @Test
+    public void isCounterWork() throws InterruptedException {
+        driver.get("https://market.yandex.ru/catalog/54726/list?hid=91491&utm_source=adfox_desktop&utm_medium=banner_regular&utm_campaign=electron_smartphone_305x238&glfilter=4940921%3A13475069&local-offers-first=0&onstock=1");
+        WebElement wishlistButton = driver.findElementByXPath("/html/body/div[1]/div[5]/div[2]/div[1]/div[2]/div/div[1]/div[3]/div[1]/div/div/a/i[1]");
+        wishlistButton.click();
 
+        WebElement counter = wishlistButton.findElement(By.xpath("/html/body/div[1]/div[1]/noindex/div/div/div[2]/div/div[2]/div[1]/a[1]/span[1]/span[1]"));
+
+        Thread.sleep(2000);
+        if (Integer.parseInt(counter.getText()) == 1 )
+            System.out.println("Success");
+    }
 }
