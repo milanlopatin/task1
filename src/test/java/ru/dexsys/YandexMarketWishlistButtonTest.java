@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class YandexMarketWishlistButtonTest extends WebDriverSettings {
@@ -35,7 +37,8 @@ public class YandexMarketWishlistButtonTest extends WebDriverSettings {
     public void isClickable(){
         driver.get("https://market.yandex.ru");
         WebElement wishlistButton = driver.findElement(By.cssSelector("[data-title = \"Отложенные\""));
-        wishlistButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.elementToBeClickable(wishlistButton));
     }
 
     @Test
